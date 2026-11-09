@@ -218,6 +218,40 @@ Overall:
 
 ---
 
+## Day 04 — 09/11/2026
+
+### Topics
+
+- Restart after a 3-month break (1-month plan, 2h/day)
+- Active recall: Ethereum, transaction lifecycle, gas, ABI/bytecode, call vs send
+- Gas price vs gas limit
+- Lottery contract: `msg.sender`, `require`, `payable`, `view`, `modifier`
+
+### What I Learned
+
+- Gas price = price per unit of work; gas limit = maximum units I accept. Work done is always paid, even on revert.
+- `payable` lets a function receive ETH; it is unrelated to paying gas.
+- A modifier is a reusable check, and `_;` is where the function body runs.
+- Wrote `getPlayersCount()`, `restricted` modifier and `resetPlayers()` myself.
+
+### Questions I Had
+
+- Did not understand modifiers at first; asked for an explanation instead of guessing, then wrote one correctly.
+
+### Mentor Feedback
+
+Understanding: ⭐⭐⭐☆☆ — recall 2/5 solid at start; recurring confusion between what is sent vs what is paid (gas vs `msg.value`), and `require` logic reversed once.
+
+Reasoning: ⭐⭐⭐⭐⭐ — honest "je ne sais pas", asked for explanation, applied it correctly on the first try.
+
+Vocabulary: ⭐⭐☆☆☆ — several terms mixed (gas limit as minimum, require inverted); dictation errors aside.
+
+Overall:
+
+6.5 / 10 — good restart. Gap to close: a reverted transaction still costs gas for the work done.
+
+---
+
 # 🧩 Projects
 
 - [ ] Counter
