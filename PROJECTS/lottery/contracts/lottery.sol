@@ -23,7 +23,23 @@ contract Lottery {
         return (players.length);
     }
 
-    function resetPlayers() public restricted { 
+    function resetPlayers() private restricted { 
         players = new address[](0); 
+    }
+
+    function random() private view returns (uint256) {
+        return uint256(keccak256(
+            abi.encodePacked(
+                block.prevrandao,
+                block.timestamp,
+                players
+            )
+        ));
+    }
+
+    function pickWinner() public payable restricted {
+        uint256 winnerIndex = random() % players.length;
+        payable(players[winnerIndex]).transfer(address(this).balance); 
+        resetPlayers();
     }
 }

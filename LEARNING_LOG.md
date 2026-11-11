@@ -252,6 +252,40 @@ Overall:
 
 ---
 
+## Day 05 — 11/11/2026
+
+### Topics
+
+- Recall quiz (gas, `require`, `payable`, modifiers)
+- Deployment as a transaction, contract address and nonce
+- Pseudo-randomness on-chain and why it is exploitable
+- `private` visibility, `pickWinner()`, sending ETH
+
+### What I Learned
+
+- Contract address = f(deployer address, nonce); the manager address is a different thing (the deployer).
+- On-chain data is public, so pseudo-random numbers are predictable; `private` hides nothing.
+- Wrote `random()` and `pickWinner()` myself.
+- Found a real vulnerability: a public `resetPlayers()` lets a dishonest manager steal the pot. Fixed with `private`.
+
+### Questions I Had
+
+- Did not know why `pickWinner()` reverted in Remix (Value field set while the function is not `payable`); said so honestly.
+
+### Mentor Feedback
+
+Understanding: ⭐⭐⭐☆☆ — nonce/address distinction still shaky (wrong twice before landing); `private` misunderstood.
+
+Reasoning: ⭐⭐⭐⭐⭐ — found the `resetPlayers()` attack unprompted and applied the fix.
+
+Vocabulary: ⭐⭐⭐☆☆ — still mixing close notions (manager address vs contract address, trigger vs choose).
+
+Overall:
+
+7 / 10 — good applied work. Retest the nonce concept tomorrow.
+
+---
+
 # 🧩 Projects
 
 - [ ] Counter
