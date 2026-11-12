@@ -286,10 +286,46 @@ Overall:
 
 ---
 
+## Day 06 — 12/11/2026
+
+### Topics
+
+- Recall quiz (manager vs contract address, nonce, `private`, `pickWinner()`)
+- Hardhat setup for the Lottery project
+- Writing automated tests with ethers v6
+- False-passing tests and sabotage testing
+
+### What I Learned
+
+- `package.json` is generated with npm; every `require`d module must be installed.
+- A test is prepare → act → assert; `beforeEach` gives each test a fresh contract.
+- Revert tests use `await expect(call).to.be.revertedWith("exact message")`.
+- A green test can prove nothing (no `await`, no `expect`, or asserting something already true). Removing `restricted` on purpose must turn the access test red.
+- Wrote 6 passing tests for the Lottery.
+
+### Questions I Had
+
+- Asked for help writing tests rather than guessing; worked through a guided example, then wrote 2 tests myself and fixed them after review.
+- No written 5-line summary this session; notes written from the session itself.
+
+### Mentor Feedback
+
+Understanding: ⭐⭐⭐⭐☆ — recall 3/3, and the tests now check real behavior after two rounds of corrections.
+
+Reasoning: ⭐⭐⭐⭐☆ — fixed false greens once pointed out, ran the sabotage check; `beforeEach` explained with the wrong reason.
+
+Vocabulary: ⭐⭐⭐☆☆ — `await`/`expect` placement and exact-message matching needed correction.
+
+Overall:
+
+7.5 / 10 — real hands-on progress. Next: remove `payable` from `pickWinner()`, add the empty-players guard, then Bank.
+
+---
+
 # 🧩 Projects
 
 - [ ] Counter
-- [ ] Lottery *(next up — Section 3)*
+- [x] Lottery *(contract + 6 Hardhat tests; not yet deployed to a testnet)*
 - [ ] Bank
 - [ ] Voting
 - [ ] ERC20
