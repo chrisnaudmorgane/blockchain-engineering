@@ -31,6 +31,7 @@ describe("Lottery", () => {
     });
 
     it("only the manager can pick a winner", async() => {
+        await lottery.connect(player2).enter({ value: ethers.parseEther("0.1") });
         await expect(lottery.connect(player1).pickWinner()).to.be.revertedWith("Only the manager can do this action");
     });
 
@@ -49,4 +50,9 @@ describe("Lottery", () => {
         
         expect(await ethers.provider.getBalance(await lottery.getAddress())).to.be.equal(0);
     });
+
+    it("no players", async () => {
+        await expect(lottery.connect(manager).pickWinner()).to.revertedWith("No players in the lottery");
+    });
+
 });

@@ -23,7 +23,7 @@ contract Lottery {
         return (players.length);
     }
 
-    function resetPlayers() private restricted { 
+    function resetPlayers() private { 
         players = new address[](0); 
     }
 
@@ -37,7 +37,8 @@ contract Lottery {
         ));
     }
 
-    function pickWinner() public payable restricted {
+    function pickWinner() public restricted {
+        require(players.length > 0, "No players in the lottery");
         uint256 winnerIndex = random() % players.length;
         payable(players[winnerIndex]).transfer(address(this).balance); 
         resetPlayers();

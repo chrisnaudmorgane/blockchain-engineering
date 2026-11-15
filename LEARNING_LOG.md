@@ -322,11 +322,45 @@ Overall:
 
 ---
 
+## Day 07 — 15/11/2026
+
+### Topics
+
+- Catch-up session (missed Friday): Lottery hardening and tests
+- Bank project: deposit, withdraw, balances with a `mapping`
+- Checks-effects-interactions, `transfer` vs `call`, reentrancy (concept)
+
+### What I Learned
+
+- Redundant access locks can mask a missing one; sabotage testing exposed it.
+- A withdraw that sends the contract balance instead of the requested amount lets anyone drain the bank; the ledger lies while the ETH is gone.
+- Update state before sending ETH (checks-effects-interactions); `call` needs this, `transfer` hid the problem with its 2300 gas limit.
+- Wrote the Bank and its 4 tests myself; the vulnerability test went red when I sabotaged `withdraw()`.
+
+### Questions I Had
+
+- Asked how to structure `package.json` and why Hardhat 3 broke the Bank setup (aligned to Hardhat 2).
+- No 5-line written summary this session.
+
+### Mentor Feedback
+
+Understanding: ⭐⭐⭐⭐☆ — reentrancy idea found unprompted ("a loop that never reaches the balance update"); still confused real ETH vs ledger numbers and `transfer` limits.
+
+Reasoning: ⭐⭐⭐⭐⭐ — found and defended removing the redundant modifier, verified with a sabotage test.
+
+Vocabulary: ⭐⭐⭐☆☆ — `await`/`expect`, copy-paste naming; claimed "all works" before a failing run was checked.
+
+Overall:
+
+7.5 / 10 — solid project work. Next: reentrancy demo (VulnerableBank + Attacker), events, then Voting.
+
+---
+
 # 🧩 Projects
 
 - [ ] Counter
 - [x] Lottery *(contract + 6 Hardhat tests; not yet deployed to a testnet)*
-- [ ] Bank
+- [x] Bank *(contract + 4 Hardhat tests; reentrancy demo to do)*
 - [ ] Voting
 - [ ] ERC20
 - [ ] NFT
