@@ -1,15 +1,16 @@
-const { expect } = require("chai");
-const { ethers } = require("hardhat");
+require("@nomicfoundation/hardhat-chai-matchers");
+    const { expect } = require("chai");
+    const { ethers } = require("hardhat");
 
-describe("Bank", () => {
-    let bank, Alice, Bob;
+    describe("Bank", () => {
+        let bank, Alice, Bob;
 
-    beforeEach(async() => {
-        [Alice, Bob] = await ethers.getSigners();
-        const Bank = await ethers.getContractFactory("Bank");
-        bank = await Bank.deploy();
-        await bank.waitForDeployment();
-    });
+        beforeEach(async() => {
+            [Alice, Bob] = await ethers.getSigners();
+            const Bank = await ethers.getContractFactory("Bank");
+            bank = await Bank.deploy();
+            await bank.waitForDeployment();
+        });
 
    it("deposit fund to my bank", async() => {
         const amount = ethers.parseEther("10");

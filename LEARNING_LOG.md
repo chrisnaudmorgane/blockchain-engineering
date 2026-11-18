@@ -356,11 +356,45 @@ Overall:
 
 ---
 
+## Day 08 — 17/11/2026
+
+### Topics
+
+- Recall quiz (2/6 solid)
+- Reentrancy: `VulnerableBank`, `Attack` contract, `receive()`
+- Solidity 0.8 checked arithmetic vs `unchecked`
+- Test writing vocabulary (signers, factory, provider, await/expect)
+
+### What I Learned
+
+- Reentrancy happens when ETH is sent with `call` before the sender's balance is reduced; the fix is check → update → send.
+- `transfer` gives 2300 gas, `call` gives all available gas.
+- Solidity 0.8 checked arithmetic blocked my attack by accident; with `unchecked` the bank was drained (6 ETH → 0) while the ledger still showed Alice's 3 ETH.
+- Wrote an attacker contract and two tests: one drains `VulnerableBank`, one proves `Bank` resists.
+
+### Questions I Had
+
+- Said honestly that I do not master test writing (`getContractFactory`, `getBalance`, provider, address, `await`/`expect`); got a cheat sheet and a drill; Counter-from-scratch planned next.
+
+### Mentor Feedback
+
+Understanding: ⭐⭐⭐☆☆ — good grasp of the order of operations; recall 2/6 and the vocabulary drill had syntax errors (only 1 of 3 lines fully correct).
+
+Reasoning: ⭐⭐⭐⭐☆ — correct prediction of `Transfer failed`, honest about gaps; no written predictions before running, and "tout est réglé" was said before the tests were green.
+
+Vocabulary: ⭐⭐☆☆☆ — `await` inside `expect` again; Solidity syntax (`"5 ether"`) used in JavaScript; wrong balance (`address(this)` vs `address(bank)`).
+
+Overall:
+
+7 / 10 — real security progress, but test writing needs drilling. Next: Counter from scratch.
+
+---
+
 # 🧩 Projects
 
 - [ ] Counter
 - [x] Lottery *(contract + 6 Hardhat tests; not yet deployed to a testnet)*
-- [x] Bank *(contract + 4 Hardhat tests; reentrancy demo to do)*
+- [x] Bank *(contract + 4 Hardhat tests; reentrancy demo done)*
 - [ ] Voting
 - [ ] ERC20
 - [ ] NFT
